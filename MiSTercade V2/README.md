@@ -1,12 +1,5 @@
-MiSTer.ini is the file that contains low level settings for MiSTer FPGA. This repository contains a collection of INI files for various MiSTer Addons products: IO Analog, IO Direct, and MiSTercade. 
+MiSTercade V2 builds on the venerable MiSTercade V1. This time, it uses Direct Video (HDMI DAC) to produce analog video.
 
-These INIs may not be up to date and may lack newer settings from the main MiSTer.ini from the official MiSTer Github repository.
+There's an optional Analog DAC accessory to restore dual audio and video output (HDMI + analog video), that will be available in the future.
 
-While these INI files should be enough to get you up and running, it's important that you take time to further customize the INI files to your specific setup.
-
-Please create a Github Issue if you find problems with these files.
-
-
-Love,
-
-Porkchop Express
+These INI files are designed for the standard Direct Video use, which requires the HDMI jumper and doesn't allow for simultaneous HDMI and analog audio and video output.
