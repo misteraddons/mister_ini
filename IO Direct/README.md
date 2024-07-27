@@ -1,12 +1,7 @@
-MiSTer.ini is the file that contains low level settings for MiSTer FPGA. This repository contains a collection of INI files for various MiSTer Addons products: IO Analog, IO Direct, and MiSTercade. 
+This section is for IO Direct which uses a full-range 24-bit HDMI DAC to produce pristine and accurate 24-bit RGB video.
 
-These INIs may not be up to date and may lack newer settings from the main MiSTer.ini from the official MiSTer Github repository.
+Note that you sacrifice HDMI output when you use Direct Video.
 
-While these INI files should be enough to get you up and running, it's important that you take time to further customize the INI files to your specific setup.
+VGA output is experimental. Most cores work great. Some cores don't have the scandoubler included due to space constraints (PSX, and N64). Still working on the native 480p cores (memtest, ao486, etc.) 
 
-Please create a Github Issue if you find problems with these files.
-
-
-Love,
-
-Porkchop Express
+IO Direct requires a Saturn to HD15 cable, only offered on misteraddons.com
