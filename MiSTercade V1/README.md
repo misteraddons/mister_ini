@@ -1,12 +1,5 @@
-MiSTer.ini is the file that contains low level settings for MiSTer FPGA. This repository contains a collection of INI files for various MiSTer Addons products: IO Analog, IO Direct, and MiSTercade. 
+MiSTercade is a love letter that bridges the magic of MiSTer with JAMMA arcade cabinets. These INI files option the basic setups for almost all cabinet types.
 
-These INIs may not be up to date and may lack newer settings from the main MiSTer.ini from the official MiSTer Github repository.
+MiSTer doesn't offer an easy way to rotate analog video. Like original arcade PCBs, the monitor was intended to be rotated within the cabinet for each game.
 
-While these INI files should be enough to get you up and running, it's important that you take time to further customize the INI files to your specific setup.
-
-Please create a Github Issue if you find problems with these files.
-
-
-Love,
-
-Porkchop Express
+You can try enabling vga_scaler and using the built-in core rotation features if you'd like.
