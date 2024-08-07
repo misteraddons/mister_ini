@@ -2,7 +2,9 @@ This section is for IO Direct which uses a full-range 24-bit HDMI DAC to produce
 
 Note that you can't use HDMI output simultaneously when you use Direct Video.
 
-YPbPr requires the Sync-on-green switch set to the ON position.
+Sync-on-green IO board switch:
+- YPbPr requires the Sync-on-green switch set to the ON position.
+- All other analog video formats require the Sync-on-green switch set to the OFF position.
 
 VGA output is experimental. Most cores work great. Some cores don't have the scandoubler included due to space constraints (PSX, and N64). Still working on the native 480p cores (memtest, ao486, etc.) 
 
