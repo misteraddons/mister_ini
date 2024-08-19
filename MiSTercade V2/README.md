@@ -4,13 +4,13 @@ There's an optional Analog DAC accessory to restore dual audio and video output 
 
 These INI files are designed for the standard Direct Video use, which requires the HDMI jumper and doesn't allow for simultaneous HDMI and analog audio and video output.
 
-# Key Settings
+## Key Settings
 * vga_mode=rgb 
 * direct_video=1 ; This is required unless you're using the IO DAC modules for analog audio and video.
 * composite_sync=1
 * player_1_controller=16D0:1358.0001 ; Ensures player 1 controls are always player 1
 
-# Recommended Settings
+## Recommended Settings
 * disable_autofire=0 ; If you're using the down + Start button combo for OSD, autofire isn't very useful. Set this to "1" if you use the remote to activate menu and unbind the menu button combo.
 * video_info=0 ; Disable resolution info at each resolution change
 * controller_info=0 ; Disable controller mapping pop-up at each core launch
