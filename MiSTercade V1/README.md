@@ -8,7 +8,7 @@ You can try enabling vga_scaler and using the built-in core rotation features if
 * vga_mode=rgb 
 * direct_video=0 ; This is required unless you're using the IO DAC modules for analog audio and video.
 * composite_sync=1
-* player_1_controller=16D0:10BE.0001 ; Ensures player 1 controls are always player 1
+* player_1_controller=16D0:10BE.0001 ; Ensures player 1 controls are always assigned to player 1
 
 ## Recommended Settings
 * disable_autofire=0 ; If you're using the down + Start button combo for OSD, autofire isn't very useful. Set this to "1" if you use the remote to activate menu and unbind the menu button combo.
