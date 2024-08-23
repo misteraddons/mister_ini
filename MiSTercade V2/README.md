@@ -4,6 +4,8 @@ There's an optional Analog DAC accessory to restore dual audio and video output 
 
 These INI files are designed for the standard Direct Video use, which requires the HDMI jumper and doesn't allow for simultaneous HDMI and analog audio and video output.
 
+The HDMI folder contains an INI file meant for modern, HDMI displays. Remove the HDMI jumper and insert an HDMI cable to the lower HDMI port to use this.
+
 ## Key Settings
 ```ini
 vga_mode=rgb 
