@@ -11,6 +11,9 @@ direct_video=1 ; This is required unless you're using the IO DAC modules for ana
 composite_sync=1
 player_1_controller=usb-1.3/input0 ; Ensures player 1 controls are always assigned to player 1
 player_2_controller=usb-1.4/input0 ; Ensures player 2 controls are always assigned to player 2
+osd_rotate=0 ; For horizontal monitors
+osd_rotate=1 ; for clockwise rotated monitors (older games like Pac-Man)
+osd_rotate=2 ; for counter-clockwise rotated monitors (newer games like DoDonPachi)
 ```
 
 ## Recommended Settings
