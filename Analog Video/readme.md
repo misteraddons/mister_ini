@@ -7,13 +7,17 @@ Sync-on-green IO board switch:
 HDMI video is set to 1080p.
 
 ## Key Settings
-* vga_mode=rgb ; Change this to "ypbpr" for component video, or "svideo" for S-video/composite video. 
-* direct_video=0
-* composite_sync=1
+```ini
+vga_mode=rgb ; Change this to "ypbpr" for component video, or "svideo" for S-video/composite video. 
+direct_video=0
+composite_sync=1
+```
 
 ## Recommended Settings
-* video_info=0 ; Disable resolution info at each resolution change
-* controller_info=0 ; Disable controller mapping pop-up at each core launch
+```ini
+video_info=0 ; Disable resolution info at each resolution change
+controller_info=0 ; Disable controller mapping pop-up at each core launch
+```
 
 ```
 [Menu]
