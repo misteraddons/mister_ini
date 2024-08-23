@@ -14,7 +14,6 @@ player_2_controller=usb-1.4/input0 ; Ensures player 2 controls are always assign
 ```
 
 ## Recommended Settings
-* disable_autofire=0 ; If you're using the down + Start button combo for OSD, autofire isn't very useful. Set this to "1" if you use the remote to activate menu and unbind the menu button combo.
 * video_info=0 ; Disable resolution info at each resolution change
 * controller_info=0 ; Disable controller mapping pop-up at each core launch
 
