@@ -6,9 +6,9 @@ You can try enabling vga_scaler and using the built-in core rotation features if
 
 ## Key Settings
 ```ini
-vga_mode=rgb 
-direct_video=0 ; This is required unless you're using the IO DAC modules for analog audio and video.
-composite_sync=1
+vga_mode=rgb  ; This is the system default if no vga_mode is defined
+direct_video=2 ; This setting now automatically enables direct video or hdmi, dynamically
+composite_sync=1  ; This is the system default if no composte_sync is defined
 player_1_controller=16D0:10BE.0001 ; Ensures player 1 controls are always assigned to player 1
 osd_rotate=0 ; For horizontal monitors
 osd_rotate=1 ; for clockwise rotated monitors (older games like Pac-Man)

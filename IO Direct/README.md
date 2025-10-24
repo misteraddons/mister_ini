@@ -11,8 +11,8 @@ VGA output is experimental. Most cores work great. Some cores don't have the sca
 ## Key Settings
 ```ini
 vga_mode=rgb ; Change this to "ypbpr" for component video, or "svideo" for S-video/composite video.
-direct_video=1 ; This is required unless you're using the IO DAC modules for analog audio and video.
-composite_sync=1
+direct_video=2 ; This setting automatically switches between hdmi and direct video
+composite_sync=1 ; This is the system default now
 ```
 
 ## Recommended Settings

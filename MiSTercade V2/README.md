@@ -8,10 +8,10 @@ The HDMI folder contains an INI file meant for modern, HDMI displays. Remove the
 
 ## Key Settings
 ```ini
-vga_mode=rgb
+vga_mode=rgb ; This setting is default and can be commented out if desired
 hdmi_audio_96k=0 ; Make sure you change this to 0 if using the SD card from MiSTercade V1, or you won't get audio output.
-direct_video=1 ; This is required unless you're using the IO DAC modules for analog audio and video.
-composite_sync=1
+direct_video=2 ; This is an automatic setting that will enable HDMI or direct video as needed
+composite_sync=1 ; This setting is now default for MiSTer and can be removed/commented out
 player_1_controller=usb-1.3/input0 ; Ensures player 1 controls are always assigned to player 1
 player_2_controller=usb-1.4/input0 ; Ensures player 2 controls are always assigned to player 2
 osd_rotate=0 ; For horizontal monitors
