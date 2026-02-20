@@ -1,0 +1,78 @@
+name: Sync Upstream MiSTer.ini
+
+on:
+  schedule:
+    # Poll daily at 09:00 MST (16:00 UTC).
+    # GitHub Actions can't subscribe to another repo's push events, so we poll.
+    # The script compares the upstream MiSTer.ini commit SHA against the last
+    # known SHA and exits early (no-op) when nothing has changed.
+    - cron: '0 16 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force run even if upstream SHA is unchanged'
+        required: false
+        default: 'false'
+        type: boolean
+
+permissions:
+  contents: write   # needed to push the patched files back
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout mister_ini
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Download patcher script
+        run: |
+          mkdir -p scripts
+          curl -fsSL \
+            "https://raw.githubusercontent.com/misteraddons/mister_ini/main/scripts/mister_ini_patcher.py" \
+            -o scripts/mister_ini_patcher.py
+
+      - name: Run patcher
+        id: patcher
+        run: |
+          FORCE_FLAG=""
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            FORCE_FLAG="--force"
+          fi
+          python3 scripts/mister_ini_patcher.py --ci --repo-dir . $FORCE_FLAG | tee /tmp/patcher_output.txt
+
+      - name: Commit and push changes
+        run: |
+          git config user.name  "mister-ini-bot"
+          git config user.email "bot@misteraddons.com"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "Nothing to commit — upstream unchanged or all settings were custom."
+          else
+            DATE=$(date +%Y-%m-%d)
+            NFILES=$(git diff --cached --name-only | grep -c 'MiSTer.ini' || true)
+            MSG="Sync upstream MiSTer.ini changes (${DATE})"
+            if [ "$NFILES" -gt 0 ]; then
+              MSG="${MSG} — ${NFILES} file(s) updated"
+            fi
+            git commit -m "$MSG"
+            git push
+            echo "✅ Pushed: $MSG"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "### MiSTer.ini Upstream Sync" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          cat /tmp/patcher_output.txt >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
