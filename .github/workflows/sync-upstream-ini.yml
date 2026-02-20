@@ -33,13 +33,6 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Download patcher script
-        run: |
-          mkdir -p scripts
-          curl -fsSL \
-            "https://raw.githubusercontent.com/misteraddons/mister_ini/main/scripts/mister_ini_patcher.py" \
-            -o scripts/mister_ini_patcher.py
-
       - name: Run patcher
         id: patcher
         run: |
