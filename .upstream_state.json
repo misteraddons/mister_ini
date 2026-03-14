@@ -1,4 +1,20 @@
 {
   "last_upstream_sha": "6b21918ce28d18c680d231ac770b8addc3b7ae0c",
-  "last_run": "2026-03-09T16:26:32.176084"
+  "last_run": "2026-03-13T21:52:22.101526",
+  "managed_product_inis": [
+    "Analog Video/RGB/MiSTer.ini",
+    "Analog Video/S-Video and Composite/MiSTer.ini",
+    "Analog Video/VGA/MiSTer.ini",
+    "Analog Video/YPbPR (Component)/MiSTer.ini",
+    "IO Direct/RGB/MiSTer.ini",
+    "IO Direct/S-Video and Composite/MiSTer.ini",
+    "IO Direct/VGA (WIP)/MiSTer.ini",
+    "IO Direct/YPbPR (Component)/MiSTer.ini",
+    "MiSTercade V1/15kHz/MiSTer.ini",
+    "MiSTercade V1/31kHz/MiSTer.ini",
+    "MiSTercade V2/15kHz/MiSTer.ini",
+    "MiSTercade V2/31kHz/MiSTer.ini",
+    "MiSTercade V2/31kHz (Upscaled)/MiSTer.ini",
+    "MiSTercade V2/HDMI/MiSTer.ini"
+  ]
 }

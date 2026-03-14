@@ -51,7 +51,9 @@ PRODUCT_INIS = [
     "MiSTercade V2/15kHz/MiSTer.ini",
     "MiSTercade V2/31kHz/MiSTer.ini",
     "MiSTercade V2/31kHz (Upscaled)/MiSTer.ini",
+    "MiSTercade V2/HDMI/MiSTer.ini",
 ]
+LEGACY_PRODUCT_INIS = PRODUCT_INIS[:-1]
 
 # ── Parsing ───────────────────────────────────────────────────────────────────
 
@@ -105,6 +107,7 @@ def patch_product_ini(
     baseline: dict,
     upstream: dict,
     dry_run: bool = False,
+    seed_missing_defaults: bool = False,
 ) -> list:
     """
     Apply upstream changes to a product INI file.
@@ -124,6 +127,7 @@ def patch_product_ini(
 
     changes = []
     modified_lines = list(lines)
+    product_keys = set(product.keys())
 
     # ── Changed keys ──────────────────────────────────────────────────────────
     for key in changed_keys:
@@ -180,6 +184,25 @@ def patch_product_ini(
         modified_lines.append(header)
         modified_lines.extend(new_lines_to_append)
 
+    # ── Seed missing defaults for newly managed files ───────────────────────
+    seeded_lines_to_append = []
+    if seed_missing_defaults:
+        for key, up in upstream.items():
+            if key in product_keys:
+                continue
+            if key in new_keys:
+                continue
+            seeded_lines_to_append.append(
+                format_setting_line(key, up['value'], up['commented'])
+            )
+            changes.append(f"  [seed] {key}={up['value']!r}")
+
+    if seeded_lines_to_append:
+        header = (
+            f"\n; === Missing defaults synced for newly managed file ({date_str}) ===\n"
+        )
+        modified_lines.append(header)
+        modified_lines.extend(seeded_lines_to_append)
     # ── Removed keys ─────────────────────────────────────────────────────────
     for key in removed_keys:
         if key not in product:
@@ -276,13 +299,21 @@ def main():
     state_file = repo / STATE_PATH
     state = json.loads(state_file.read_text()) if state_file.exists() else {}
     last_sha = state.get('last_upstream_sha', '')
+    managed_product_inis = set(state.get('managed_product_inis', LEGACY_PRODUCT_INIS))
+    newly_managed_files = [
+        ini_rel for ini_rel in PRODUCT_INIS if ini_rel not in managed_product_inis
+    ]
 
-    if last_sha == upstream_sha and not args.force and upstream_sha != 'unknown':
+    if last_sha == upstream_sha and not args.force and upstream_sha != 'unknown' and not newly_managed_files:
         print(f"Upstream unchanged (SHA: {upstream_sha[:8]}). Nothing to do.")
         print("Use --force to run anyway.")
         return
 
     print(f"Upstream SHA: {last_sha[:8] or 'none'} → {upstream_sha[:8]}")
+    if newly_managed_files:
+        print("New managed product files detected:")
+        for ini_rel in newly_managed_files:
+            print(f"  {ini_rel}")
 
     # ── Fetch upstream content ────────────────────────────────────────────────
     print("Fetching upstream MiSTer.ini...")
@@ -327,7 +358,8 @@ def main():
             continue
 
         changes = patch_product_ini(
-            ini_path, baseline_parsed, upstream_parsed, dry_run=args.dry_run
+            ini_path, baseline_parsed, upstream_parsed, dry_run=args.dry_run,
+            seed_missing_defaults=ini_rel in newly_managed_files,
         )
         meaningful = [c for c in changes if '[skip' not in c]
         all_changes[ini_rel] = changes
@@ -358,6 +390,7 @@ def main():
     baseline_file.write_text(upstream_content, encoding='utf-8')
     state['last_upstream_sha'] = upstream_sha
     state['last_run']          = datetime.now().isoformat()
+    state['managed_product_inis'] = PRODUCT_INIS
     state_file.write_text(json.dumps(state, indent=2))
 
     if args.ci:
