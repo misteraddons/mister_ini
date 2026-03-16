@@ -9,7 +9,7 @@ HDMI video is set to 1080p.
 ## Key Settings
 ```ini
 vga_mode=rgb ; Change this to "ypbpr" for component video, or "svideo" for S-video/composite video. 
-direct_video=0 or 2 ; 2 is automatic HDMI/Direct video mode
+direct_video=2 ; This setting automatically switches between HDMI and Direct Video
 composite_sync=1 ; This is the system default now
 ```
 
