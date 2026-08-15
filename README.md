@@ -1,12 +1,7 @@
-MiSTer.ini is the file that contains low level settings for MiSTer FPGA. This repository contains a collection of INI files for various MiSTer Addons products: IO Analog, IO Direct, and MiSTercade. 
+# MiSTer Addons MiSTer.ini profiles
 
-These INIs may not be up to date and may lack newer settings from the main MiSTer.ini from the official MiSTer Github repository.
+Source repository for the reviewed configuration profiles published in MiSTer Addons documentation.
 
-While these INI files should be enough to get you up and running, it's important that you take time to further customize the INI files to your specific setup.
+[Setup guide and direct profile downloads](https://misteraddons-docs.pages.dev/setup/mister-ini/)
 
-Please create a Github Issue if you find problems with these files.
-
-
-Love,
-
-Porkchop Express
+This repository remains the source for profile updates and issue tracking. Most users should use the documentation page above instead of browsing files here.
