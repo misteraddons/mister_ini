@@ -1,6 +1,6 @@
 {
-  "last_upstream_sha": "756178e0cf25e3656d6507dac91759bb217b6316",
-  "last_run": "2026-10-05T16:17:27.817161",
+  "last_upstream_sha": "601b90e0eec2b7530775827ef5495fd5e76105e2",
+  "last_run": "2026-10-17T16:13:00.087885",
   "managed_product_inis": [
     "Analog Video/RGB/MiSTer.ini",
     "Analog Video/S-Video and Composite/MiSTer.ini",
